@@ -1,4 +1,4 @@
-# Crop Disease Classifier 🌱
+# Crop Disease Classifier 
 
 This is a machine learning project that I made to identify diseases in tomato leaves from images.
 
