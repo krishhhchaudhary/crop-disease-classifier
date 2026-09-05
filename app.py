@@ -64,20 +64,38 @@ if uploaded_file is not None:
 
     predicted_index = top_indices[0]
     predicted_disease = class_names[predicted_index]
+
     confidence = predictions[predicted_index] * 100
+    second_confidence = predictions[top_indices[1]] * 100
 
-    st.subheader("Prediction")
+    # Checks
+    confidence_ok = confidence >= 70
+    margin_ok = (confidence - second_confidence) >= 15
 
-    st.success(f"🌿 Disease: {predicted_disease}")
-    st.info(f"Confidence: {confidence:.2f}%")
+    if not confidence_ok or not margin_ok:
 
-    st.subheader("Top 3 Predictions")
+        st.subheader("Prediction")
 
-    for index in top_indices:
-        st.write(
-            f"**{class_names[index]}** — "
-            f"{predictions[index] * 100:.2f}%"
+        st.error("❌ Invalid or unclear image")
+
+        st.warning(
+            "Please upload a clear image of a tomato leaf."
         )
+
+    else:
+
+        st.subheader("Prediction")
+
+        st.success(f"🌿 Disease: {predicted_disease}")
+        st.info(f"Confidence: {confidence:.2f}%")
+
+        st.subheader("Top 3 Predictions")
+
+        for index in top_indices:
+            st.write(
+                f"**{class_names[index]}** — "
+                f"{predictions[index] * 100:.2f}%"
+            )
 
 st.warning(
     "This is an AI model prediction and should not be treated as a definitive agricultural diagnosis."
