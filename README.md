@@ -1,4 +1,4 @@
-# Crop Disease Classifier 🌱
+# Crop Disease Classifier 
 
 This is a machine learning project that I made to identify diseases in tomato leaves from images.
 
@@ -66,7 +66,7 @@ Install the required packages:
 
 ```bash
 pip install -r requirements.txt
-
+```
 ## Dataset
 
 I used the Tomato Leaf Disease dataset from Hugging Face.
